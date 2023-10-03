@@ -1,0 +1,49 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    body{
+        background-image: url('{% static "images/student.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 1000px;
+    }
+    .container{
+        opacity: 0.9;
+    }
+    
+</style>
+
+
+
+
+
+
+<center><h1 class="alert alert-info info mt-3" style="width:300px;">Add Student</h1></center>
+<div class="container bg-warning mt-3" style="border-radius: 10px; width:40%">
+    <form action="{% url 'add_studentdb' %}" method="post" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+        {% csrf_token %}
+        
+    
+ 
+        <input type="text" name="name" class="form-control" placeholder="Enter Name" style="text-align: center;"><br>
+        <input type="text" name="address"class="form-control" placeholder="Address" style="text-align: center;"><br>
+        <input type="number" name="age"class="form-control" placeholder="Enter age" style="text-align: center;"><br>
+        <input type="date" name="jdate"class="form-control" style="text-align: center;"><br>
+
+        <div class="form-outline mb-4">
+            <select class="form-select" id="sel1" name="sel" style="text-align: center;">
+                <option value="">Please select the course</option>
+                {% for c in course %}
+                <option value="{{c.id}}">{{c.course_name}}</option>
+               {% endfor %}
+              </select>
+    </div>
+        
+        <button type="submit" class="btn btn-primary" style="margin-left: 35%; width:100px;">Submit</button>
+      
+    </form>
+ </div>
+ 
+ {% endblock %}

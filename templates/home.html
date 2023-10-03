@@ -1,0 +1,20 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    body{
+        background-image: url('{% static "images/home.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 1000px;
+    }
+    
+</style>
+
+
+<center><h1 style="margin-top:300px; color:red;" >Welcome to Home page</h1></center>
+
+
+
+ {% endblock %}

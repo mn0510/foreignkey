@@ -1,0 +1,54 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    body{
+        background-image: url('{% static "images/student.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 1000px;
+    }
+    .container{
+        opacity: 0.9;
+    }
+    
+</style>
+
+
+
+
+
+
+<center><h1 class="alert alert-success info mt-3" style="width:300px;">Edit Student</h1></center>
+<div class="container bg-danger mt-3" style="border-radius: 10px; width:40%">
+    <form action="{% url 'edit_details' stud.id %}" method="post" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+        {% csrf_token %}
+        
+        
+       
+ 
+        <input type="text" name="name" class="form-control" style="text-align: center;" value="{{stud.student_name}}"><br>
+        <input type="text" name="address"class="form-control" style="text-align: center;" value="{{stud.student_address}}"><br>
+        <input type="number" name="age"class="form-control"  style="text-align: center;" value="{{stud.student_age}}"><br>
+        <input type="date" name="jdate"class="form-control" style="text-align: center;" value="{{stud.joining_date|date:'Y-m-d'}}"><br>
+     
+
+        <div class="form-outline mb-4">
+           
+                <select id="course" name="sel" class="form-select" style="text-align: center;">
+                    {% for c in courses %}
+                        <option value="{{ c.id }}"
+                            {% if c.id == stud.course.id %} selected{% endif %}>
+                            {{ c.course_name }}
+                        </option>
+                    {% endfor %}
+               </select>    
+    </div>
+        
+        <button type="submit" class="btn btn-primary" style="margin-left: 35%; width:100px;">Submit</button>
+      
+    </form>
+ </div>
+ 
+ {% endblock %}
